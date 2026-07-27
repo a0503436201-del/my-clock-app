@@ -1,1 +1,0 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/my-clock-app/sw.js', { scope: '/my-clock-app/' })})}

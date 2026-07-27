@@ -1,1 +1,34 @@
-if(!self.define){let e,i={};const n=(n,s)=>(n=new URL(n+".js",s).href,i[n]||new Promise(i=>{if("document"in self){const e=document.createElement("script");e.src=n,e.onload=i,document.head.appendChild(e)}else e=n,importScripts(n),i()}).then(()=>{let e=i[n];if(!e)throw new Error(`Module ${n} didn’t register its module`);return e}));self.define=(s,r)=>{const o=e||("document"in self?document.currentScript.src:"")||location.href;if(i[o])return;let t={};const d=e=>n(e,o),f={module:{uri:o},exports:t,require:d};i[o]=Promise.all(s.map(e=>f[e]||d(e))).then(e=>(r(...e),t))}}define(["./workbox-9c191d2f"],function(e){"use strict";self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"registerSW.js",revision:"2f254b6909c0a77dd9f3a71e66c7c717"},{url:"index.html",revision:"b646e4312296f57042525f8590b91fc9"},{url:"assets/index-xyavW-jj.css",revision:null},{url:"assets/index-CCOoscfz.js",revision:null},{url:"icon1-192.png",revision:"bb8b9ffd1a9e5b4a59ec605ed87bbdbf"},{url:"icon1-512.png",revision:"bb8b9ffd1a9e5b4a59ec605ed87bbdbf"},{url:"manifest.webmanifest",revision:"44005d2799192d25a3fbc7d5d0a43b59"}],{}),e.cleanupOutdatedCaches(),e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("index.html")))});
+// Ensure the service worker takes control of the page immediately
+self.addEventListener('install', (event) => {
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(clients.claim());
+});
+
+// Listen for notification click events
+self.addEventListener('notificationclick', (event) => {
+  // Close the notification immediately
+  event.notification.close();
+
+  // Get the target deep link URL from notification data
+  const urlToOpen = event.notification.data?.url || self.location.origin;
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
+      // מחפשים אם יש טאב של האפליקציה שכבר פתוח
+      for (let client of windowClients) {
+        if (client.url.startsWith(self.location.origin)) {
+          // קודם כל עושים פוקוס על הטאב הקיים, ואז מנווטים לנתיב הרצוי
+          return client.focus().then(() => client.navigate(urlToOpen));
+        }
+      }
+      
+      // אם האפליקציה לא פתוחה בכלל, פותחים חלון חדש
+      if (clients.openWindow) {
+        return clients.openWindow(urlToOpen);
+      }
+    })
+  );
+});
