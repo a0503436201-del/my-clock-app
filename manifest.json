@@ -7,7 +7,7 @@
   "theme_color": "#4f46e5",
   "icons": [
     {
-      "src": "icon1-512.png",
+      "src": "./icon1-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -18,7 +18,14 @@
       "name": "התחלת משמרת",
       "short_name": "התחל",
       "description": "התחל משמרת עבודה חדשה",
-      "url": "./?action=clockin"
+      "url": "./?action=clockin",
+      "icons": [
+        {
+          "src": "./icon1-512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
