@@ -5,6 +5,7 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4f46e5",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "./icon1-512.png",
@@ -19,13 +20,28 @@
       "short_name": "התחל",
       "description": "התחל משמרת עבודה חדשה",
       "url": "./?action=clockin",
-      "icons": [
-        {
-          "src": "./icon1-512.png",
-          "sizes": "512x512",
-          "type": "image/png"
-        }
-      ]
+      "icons": [{"src": "./icon1-512.png", "sizes": "512x512", "type": "image/png"}]
+    },
+    {
+      "name": "סיום משמרת",
+      "short_name": "סיום",
+      "description": "סיים את משמרת העבודה הנוכחית",
+      "url": "./?action=clockout",
+      "icons": [{"src": "./icon2-512.png", "sizes": "512x512", "type": "image/png"}]
+    },
+    {
+      "name": "הוספת משמרת ידנית",
+      "short_name": "הזנה ידנית",
+      "description": "הוסף משמרת ששכחת להזין",
+      "url": "./?action=manual",
+      "icons": [{"src": "./add-512.png", "sizes": "512x512", "type": "image/png"}]
+    },
+    {
+      "name": "מצב שכר",
+      "short_name": "שכר",
+      "description": "צפה בחישוב השכר החודשי שלך",
+      "url": "./?tab=salary",
+      "icons": [{"src": "./salary-512.png", "sizes": "512x512", "type": "image/png"}]
     }
   ]
 }
