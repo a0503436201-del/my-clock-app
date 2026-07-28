@@ -20,7 +20,7 @@
       "short_name": "התחל",
       "description": "התחל משמרת עבודה חדשה",
       "url": "./?action=clockin",
-      "icons": [{"src": "./icon1-512.png", "sizes": "512x512", "type": "image/png"}]
+      "icons": [{"src": "./icon3-512.png", "sizes": "512x512", "type": "image/png"}]
     },
     {
       "name": "סיום משמרת",
